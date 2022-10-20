@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Home section {data.length}</h1>
+      {/* <h1>Home section {data.length}</h1> */}
 
       {data.map((item) => (
         <NewsSamary item={item}></NewsSamary>

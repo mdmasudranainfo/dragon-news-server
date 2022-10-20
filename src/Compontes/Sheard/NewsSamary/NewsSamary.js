@@ -1,13 +1,13 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 import { Link } from "react-router-dom";
-import { FaShareAlt, FaRegBookmark } from "react-icons/fa";
+import { FaShareAlt, FaRegBookmark, FaStar, FaEye } from "react-icons/fa";
 
 const NewsSamary = ({ item }) => {
-  const { details, author, image_url, title, total_view } = item;
-  console.log(item);
+  const { details, rating, author, image_url, title, total_view, _id } = item;
+
   return (
     <Card className="mb-2">
       <Card.Header>
@@ -41,7 +41,8 @@ const NewsSamary = ({ item }) => {
         <Card.Text>
           {details.length > 250 ? (
             <p>
-              {details.slice(0, 250)} <Link>Read More...</Link>
+              {details.slice(0, 250)}{" "}
+              <Link to={`/news/${_id}`}>Read More...</Link>
             </p>
           ) : (
             <p>{details}</p>
@@ -49,7 +50,16 @@ const NewsSamary = ({ item }) => {
         </Card.Text>
         {/* <Button variant="primary">Go somewhere</Button> */}
       </Card.Body>
-      <Card.Footer className="text-muted">2 days ago</Card.Footer>
+      <Card.Footer className="d-flex justify-content-between">
+        <div className="">
+          <FaStar className="text-warning me-2"></FaStar>
+          <span>{rating.number}</span>
+        </div>
+        <div className="">
+          <FaEye className="me-2"></FaEye>
+          {total_view}
+        </div>
+      </Card.Footer>
     </Card>
   );
 };

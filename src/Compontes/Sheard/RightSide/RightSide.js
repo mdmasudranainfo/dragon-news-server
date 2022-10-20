@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Carousel from "react-bootstrap/Carousel";
@@ -14,12 +14,27 @@ import ListGroup from "react-bootstrap/ListGroup";
 
 import brand1 from "../../../assets/image/Brand1.png";
 import brand2 from "../../../assets/image/Brand2.png";
+import { AuthContext } from "../../Context/ContextProvider";
+import { GoogleAuthProvider } from "firebase/auth";
+
+const googleSingProvider = new GoogleAuthProvider();
 
 const RightSide = () => {
+  const { googleSing } = useContext(AuthContext);
+  const GoogleSingHandle = () => {
+    googleSing(googleSingProvider)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => console.log(error));
+    //
+    //
+  };
+
   return (
     <div>
       <ButtonGroup vertical="mb-2">
-        <Button variant="outline-primary mb-1">
+        <Button onClick={GoogleSingHandle} variant="outline-primary mb-1">
           <FaGoogle /> Login With Facebook
         </Button>
         <Button variant="outline-dark">
