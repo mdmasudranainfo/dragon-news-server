@@ -16,6 +16,7 @@ const auth = getAuth(app);
 const ContextProvider = ({ children }) => {
   //
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
   //
   //
   // const user = { displayName: "Badam" };
@@ -52,11 +53,12 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => unSubscribe();
   }, []);
   //
-  const userInfo = { logOut, user, googleSing, regiser, logIn };
+  const userInfo = { logOut, loading, user, googleSing, regiser, logIn };
   return (
     <AuthContext.Provider value={userInfo}>
       {/*  */}

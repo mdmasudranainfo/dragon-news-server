@@ -16,7 +16,7 @@ const News = () => {
     details,
     category_id,
   } = News;
-  console.log(News);
+
   return (
     <Card>
       <Card.Header>Featured</Card.Header>
@@ -33,7 +33,7 @@ const News = () => {
         <Card.Text>{details}</Card.Text>
 
         <Link to="/">
-          <Button variant="primary">Go somewhere</Button>
+          <Button variant="primary">Back to Topic</Button>
         </Link>
       </Card.Body>
     </Card>

@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import FormRange from "react-bootstrap/esm/FormRange";
 import Form from "react-bootstrap/Form";
 import { AuthContext } from "../../Context/ContextProvider";
 const Register = () => {
   const { regiser } = useContext(AuthContext);
+  const [error, setError] = useState("");
   const handlerRegister = (event) => {
     event.preventDefault();
+    setError("");
     const form = event.target;
     const name = form.name.value;
     const photoUrl = form.name.value;
@@ -22,7 +24,7 @@ const Register = () => {
         // ...
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.message);
         // ..
       });
     console.log(name, photoUrl, email, Password);
@@ -57,9 +59,7 @@ const Register = () => {
       <Button variant="primary" type="submit">
         Submit
       </Button>
-      <Form.Text className="text-muted">
-        {/* We'll never share your email with anyone else. */}
-      </Form.Text>
+      <Form.Text className="text-danger d-block">{error}</Form.Text>
     </Form>
   );
 };
